@@ -56,15 +56,37 @@ void add(Stock* arr)
 }
 
 
-void lo_hi(Stock* arr)
+void lo_hi(Stock* arr, int n)
 {
-    //add code to sort the stocks based on price. Lowest to highest
+    int i, j;
+    Stock temp;
+    for (i = 0; i < n; i++)
+    {
+        for (j = 0; j < n; j++)
+        {
+            if (arr[j].price > arr[i].price)
+            {
+                std::swap(arr[i], arr[j]);
+            }
+        }
+    }
 }
 
 
-void hi_lo(Stock* arr)
+void hi_lo(Stock* arr, int n)
 {
-    //add code to sort the stocks based on price. Highest to lowest.
+    int i, j;
+    Stock temp;
+    for (i = 0; i < n; i++)
+    {
+        for (j = 0; j < n; j++)
+        {
+            if (arr[j].price < arr[i].price)
+            {
+                std::swap(arr[i], arr[j]);
+            }
+        }
+    }
 }
 
 
@@ -79,6 +101,7 @@ int display_menu()
 {
     //write code to display a menu where user can choose
     // what to do to the stock collection.
+    return 0;
 }
 
 
@@ -91,20 +114,59 @@ void process_menu()
 
 int main()
 {
-    int n, i, j;
+    int n, i;
+    n = 4;
 
-    std::cout << "Enter the number of stocks you would like to initially enter: ";
-    std::cin >> n;
-    Stock arr[n];
+    //std::cout << "Enter the number of stocks you would like to initially enter: ";
+    //std::cin >> n;
+    //Stock arr[n];
+    Stock st1;
+    Stock st2;
+    Stock st3;
+    Stock st4;
+    st1.name = "apple";
+    st1.symbol = "appl";
+    st1.price = 32.59;
+    st2.name = "microsoft";
+    st2.symbol = "mic";
+    st2.price = 0.29;
+    st3.name = "mcdonalds";
+    st3.symbol = "mkd";
+    st3.price = 1000;
+    st4.name = "liverpool";
+    st4.symbol = "lvp";
+    st4.price = 56.55;
 
-    build_list(arr, n);
+    //build_list(arr, n);
+    Stock st_arr[] = {st1, st2, st3, st4};
+
+
+    //sorting tests
+    std::cout << "\n" << std::endl;
+    std::cout << "Low to high" << std::endl;
+    std::cout << "\n" << std::endl;
+
+    lo_hi(st_arr, n);
 
     for (i = 0; i < n; i++)
     {
         std::cout << "**STOCK " << i + 1 << "**" << std::endl;
-        arr[i].info();
+        st_arr[i].info();
     }
+    std::cout << "\n\n" << std::endl;
+    std::cout << "High to low" << std::endl;
+    std::cout << "\n" << std::endl;
+    hi_lo(st_arr, n);
+
+    for (i = 0; i < n; i++)
+    {
+        std::cout << "**STOCK " << i + 1 << "**" << std::endl;
+        st_arr[i].info();
+    }
+
+//end sorting test
 
     return 0;
 
 }
+
