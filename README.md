@@ -1,4 +1,4 @@
-# cst126_project1_tyler_freddie
+# PROJECT 3
 
 
 CST126
