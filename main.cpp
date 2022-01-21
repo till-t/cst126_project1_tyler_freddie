@@ -1,3 +1,4 @@
+ 
 #include <iostream>
 #include <string>
 #include <algorithm>
@@ -57,14 +58,12 @@ void build_list(Stock* arr, int n)
     }
 }
 
-
 Stock* remove(Stock* &arr, int &n)
 {
     int i;
     string srch;
-    Stock *final_arr = new Stock [n-1];
-    Stock *cop_arr = new Stock [n];
-    bool flag = true;
+    auto *final_arr = new Stock [n-1];
+    auto *cop_arr = new Stock [n];
 
     std::cout << "Enter the name for the stock that you would like to remove: ";
     std::cin >> srch;
@@ -75,7 +74,6 @@ Stock* remove(Stock* &arr, int &n)
         {
             int j = i;
             n -= 1;
-            flag = false;
             while (j < n)
             {
                 final_arr[j] = arr[j+1];
@@ -89,7 +87,6 @@ Stock* remove(Stock* &arr, int &n)
             cop_arr[i] = arr[i];
         }
     }
-    if (flag)
     {
         std::cout << "**ERROR** Name or symbol did not match any stocks. Names and symbols are case sensitive. " << std::endl;
     }
@@ -102,7 +99,7 @@ Stock* add(Stock* &arr, int &n)
 {
     int i;
     n += 1;
-    Stock *cop_arr = new Stock [n];
+    auto *cop_arr = new Stock [n];
 
     for (i = 0; i < n-1; i++)
     {
@@ -174,29 +171,91 @@ void edit(Stock* arr, int n)
 }
 
 
-int display_menu()
+void display_all(Stock* arr, int n)
 {
-    //write code to display a menu where user can choose
-    // what to do to the stock collection.
+    int i;
+    for (i=0; i < n; i ++)
+        arr[i].info();
+}
+
+
+int display_menu(int& menu_choice)
+{
+    std::cout << "1) Add a new stock to collection.\n";
+    std::cout << "2) Remove a stock from the collectino.\n";
+    std::cout << "3) Edit a stock price.\n";
+    std::cout << "4) Sort stocks based on price from high to low.\n";
+    std::cout << "5) Sort stocks based on price from low to high.\n";
+    std::cout << "6) Display all stocks in the collection.\n";
+    std::cout << "7) Exit Program.\n\n";
+    std::cout << "Enter: ";
+    std::cin >> menu_choice;
+    if (menu_choice > 7 || menu_choice < 1)
+    {
+        std::cout << "Invalid Entry. Please enter a  number from the options list provided.\n\n\n\n" << std::endl;
+        display_menu(menu_choice);
+    }
     return 0;
 }
 
 
-void process_menu()
+Stock* process_menu(Stock* &arr, int& n, int menu_choice, int &flag)
 {
-    //write code that calls uses the user input from display_menu to
-    //call the corresponding function.
+    switch(menu_choice){
+        case 1:
+            arr = add(arr, n);
+            break;
+
+        case 2:
+            arr = remove(arr, n);
+            break;
+
+        case 3:
+            edit(arr, n);
+            break;
+
+        case 4:
+            hi_lo(arr, n);
+            break;
+
+        case 5:
+            lo_hi(arr, n);
+            break;
+
+        case 6:
+            display_all(arr, n);
+            break;
+
+        case 7:
+            std::cout << "ENDING PROGRAM..." << std::endl;
+            flag = 0;
+            break;
+
+        default:
+            break;
+    }
+    return arr;
 }
 
 
 int main()
 {
     int n = 4;
-    int i;
+    int menu_choice;
+    int flag = 1;
+    auto *arr = new Stock[n];
 
+    // use this block to build stock list from scratch
+    // ==============================================================================
     //std::cout << "Enter the number of stocks you would like to initially enter: ";
     //std::cin >> n;
     //Stock arr[n];
+    //build_list(arr, n);
+    // ===============================================================================
+
+
+    // use this block for ease of testing program.
+    //====================================================================
     Stock st1;
     Stock st2;
     Stock st3;
@@ -213,58 +272,26 @@ int main()
     st4.name = "liverpool";
     st4.symbol = "lvp";
     st4.price = 56.55;
+    // =================================================================
 
-    //build_list(arr, n);
-    Stock *arr = new Stock[n];
-    Stock st_arr[] = {st1, st2, st3, st4};
-    //convert_case(arr, n);
 
-    for (i = 0; i < n; i++)
-    {
+    Stock st_arr[] = {st1, st2, st3, st4}; //comment out this line
+    // when building lists from scratch. Also comment out the following for loop.
+
+
+    for (int i = 0; i < n; i++)
         arr[i] = st_arr[i];
-        arr[i].info();
-    }
 
-    arr = add(arr, n);
-    for (i = 0; i < n; i++)
+    while (flag)
     {
-        arr[i].info();
-    }
-    arr = remove(arr, n);
-
-
-    for (i = 0; i < n; i++)
-    {
-        arr[i].info();
+        display_menu(menu_choice);
+        arr = process_menu(arr, n, menu_choice, flag);
     }
 
-/*
-    //sorting tests
-    std::cout << "\n" << std::endl;
-    std::cout << "Low to high" << std::endl;
-    std::cout << "\n" << std::endl;
-
-    lo_hi(st_arr, n);
-
-    for (i = 0; i < n; i++)
-    {
-        std::cout << "**STOCK " << i + 1 << "**" << std::endl;
-        st_arr[i].info();
-    }
-    std::cout << "\n\n" << std::endl;
-    std::cout << "High to low" << std::endl;
-    std::cout << "\n" << std::endl;
-    hi_lo(st_arr, n);
-
-    for (i = 0; i < n; i++)
-    {
-        std::cout << "**STOCK " << i + 1 << "**" << std::endl;
-        st_arr[i].info();
-    }
-*/
-//end sorting test
-
+    std::cout << "================================================================" << std::endl;
+    std::cout <<  "Program Closing..." << std::endl;
+    std::cout << "================================================================\n\n\n" << std::endl;
+    delete[] arr;
     return 0;
-
 }
 
