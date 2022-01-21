@@ -85,6 +85,7 @@ Stock* remove(Stock* &arr, int &n)
         }
         else
         {
+            final_arr[i] = arr[i];
             cop_arr[i] = arr[i];
         }
     }
