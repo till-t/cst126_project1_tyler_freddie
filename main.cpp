@@ -1,7 +1,8 @@
 #include <iostream>
 #include <string>
+#include <algorithm>
 
-using std::string;
+using namespace std;
 
 class Stock
 {
@@ -16,7 +17,7 @@ public:
     {
         std::cout << "Stock name: " << name << std::endl;
         std::cout << "Stock symbol: " << symbol << std::endl;
-        std::cout << "Stock price: " << price << std::endl;
+        std::cout << "Stock price: $" << price << std::endl;
         std::cout << "======================================" << std::endl;
     }
 };
@@ -31,6 +32,19 @@ void Stock::get_info()
     std::cin >> price;
 }
 
+/*
+void convert_case(Stock* arr, int n)
+{
+    int i, j;
+
+    for (i = 0; i < n; i++)
+    {
+        std::for_each(arr[i].name.begin(), arr[i].name.end(), [](char &c){
+            c = ::tolower(c);
+        });
+    }
+}
+*/
 
 void build_list(Stock* arr, int n)
 {
@@ -43,16 +57,28 @@ void build_list(Stock* arr, int n)
     }
 }
 
-void remove(Stock* arr)
+
+Stock* remove(Stock* &arr, int &n)
 {
-    //add code to remove a stock by matching name of stock with user input
-    //be aware of errors with case-sensitive mismatches.
+    // add code for remove
+    return arr;
+
 }
 
 
-void add(Stock* arr)
+Stock* add(Stock* &arr, int &n)
 {
-    //add code to add a stock to the collection.
+    int i;
+    n += 1;
+    Stock *cop_arr = new Stock [n];
+
+    for (i = 0; i < n-1; i++)
+    {
+        cop_arr[i] = arr[i];
+    }
+    cop_arr[n-1].get_info();
+    delete[] arr;
+    return cop_arr;
 }
 
 
@@ -90,10 +116,29 @@ void hi_lo(Stock* arr, int n)
 }
 
 
-void edit(Stock* arr)
+void edit(Stock* arr, int n)
 {
-    // add code to edit the price of one of the stocks. match by
-    //name or by symbol.
+    int i;
+    bool flag = true;
+    float val;
+
+    string x;
+    std::cout << "Please enter the name or symbol of the stock you would like to edit: ";
+    std::cin >> x;
+    for (i = 0; i < n; i++)
+    {
+        if (arr[i].name == x or arr[i].symbol == x)
+        {
+            std::cout << "Please enter the new price for the stock: ";
+            std::cin >> val;
+            arr[i].price = val;
+            flag = false;
+        }
+    }
+    if (flag)
+    {
+        std::cout << "**ERROR** Name or symbol did not match any stocks. Names and symbols are case sensitive." << std::endl;
+    }
 }
 
 
@@ -114,8 +159,8 @@ void process_menu()
 
 int main()
 {
-    int n, i;
-    n = 4;
+    int n = 4;
+    int i;
 
     //std::cout << "Enter the number of stocks you would like to initially enter: ";
     //std::cin >> n;
@@ -124,13 +169,13 @@ int main()
     Stock st2;
     Stock st3;
     Stock st4;
-    st1.name = "apple";
+    st1.name = "Apple";
     st1.symbol = "appl";
     st1.price = 32.59;
-    st2.name = "microsoft";
+    st2.name = "Microsoft";
     st2.symbol = "mic";
     st2.price = 0.29;
-    st3.name = "mcdonalds";
+    st3.name = "Mcdonalds";
     st3.symbol = "mkd";
     st3.price = 1000;
     st4.name = "liverpool";
@@ -138,9 +183,26 @@ int main()
     st4.price = 56.55;
 
     //build_list(arr, n);
+    Stock *arr = new Stock[n];
     Stock st_arr[] = {st1, st2, st3, st4};
+    //convert_case(arr, n);
+
+    for (i = 0; i < n; i++)
+    {
+        arr[i] = st_arr[i];
+        arr[i].info();
+    }
+
+    edit(arr, n);
+    arr = add(arr, n);
 
 
+    for (i = 0; i < n; i++)
+    {
+        arr[i].info();
+    }
+
+/*
     //sorting tests
     std::cout << "\n" << std::endl;
     std::cout << "Low to high" << std::endl;
@@ -163,10 +225,9 @@ int main()
         std::cout << "**STOCK " << i + 1 << "**" << std::endl;
         st_arr[i].info();
     }
-
+*/
 //end sorting test
 
     return 0;
 
 }
-
