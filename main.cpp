@@ -60,9 +60,40 @@ void build_list(Stock* arr, int n)
 
 Stock* remove(Stock* &arr, int &n)
 {
-    // add code for remove
-    return arr;
+    int i;
+    string srch;
+    Stock *final_arr = new Stock [n-1];
+    Stock *cop_arr = new Stock [n];
+    bool flag = true;
 
+    std::cout << "Enter the name for the stock that you would like to remove: ";
+    std::cin >> srch;
+
+    for (i = 0; i < n; i++)
+    {
+        if (arr[i].name == srch or arr[i].symbol == srch)
+        {
+            int j = i;
+            n -= 1;
+            flag = false;
+            while (j < n)
+            {
+                final_arr[j] = arr[j+1];
+                j++;
+            }
+            return final_arr;
+        }
+        else
+        {
+            cop_arr[i] = arr[i];
+        }
+    }
+    if (flag)
+    {
+        std::cout << "**ERROR** Name or symbol did not match any stocks. Names and symbols are case sensitive. " << std::endl;
+    }
+    delete[] arr;
+    return cop_arr;
 }
 
 
@@ -193,8 +224,12 @@ int main()
         arr[i].info();
     }
 
-    edit(arr, n);
     arr = add(arr, n);
+    for (i = 0; i < n; i++)
+    {
+        arr[i].info();
+    }
+    arr = remove(arr, n);
 
 
     for (i = 0; i < n; i++)
@@ -231,3 +266,4 @@ int main()
     return 0;
 
 }
+
