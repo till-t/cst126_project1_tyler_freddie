@@ -1,3 +1,6 @@
+//Freddy & Tyler Project 1 
+//CST126 Project 1 
+
 #include <iostream>
 #include <string>
 
@@ -62,10 +65,12 @@ void build_list(Stock* arr, int n)
 
 Stock* remove(Stock* &arr, int &n)
 {
+    //return an array with a user specified stock removed.
+    
     int i;
     string srch;
-    auto *final_arr = new Stock [n-1];
-    auto *cop_arr = new Stock [n];
+    auto *final_arr = new Stock [n-1]; //one array to hold the list if we find the correct stock
+    auto *cop_arr = new Stock [n]; // one array to hold all values in case we don't find stock
 
     std::cout << "Enter the name for the stock that you would like to remove: ";
     std::cin >> srch;
@@ -75,30 +80,34 @@ Stock* remove(Stock* &arr, int &n)
         if (arr[i].name == srch or arr[i].symbol == srch)
         {
             int j = i;
-            n -= 1;
+            n -= 1; //resize n so we stay in bounds of our shorter array 
             while (j < n)
             {
-                final_arr[j] = arr[j+1];
+                final_arr[j] = arr[j+1];//skip the index for the stock we want to remove.
                 j++;
             }
-            return final_arr;
+            return final_arr;//return array with removed stock
         }
         else
         {
-            final_arr[i] = arr[i];
-            cop_arr[i] = arr[i];
+            final_arr[i] = arr[i];//update short array even if stock is not found in case stock is
+            //found at the end of the array.
+            
+            cop_arr[i] = arr[i];// update the array in the case stock is never found.
         }
     }
     {
         std::cout << "**ERROR** Name or symbol did not match any stocks. Names and symbols are case sensitive. " << std::endl;
     }
     delete[] arr;
-    return cop_arr;
+    return cop_arr;//return unchanged array when stock not found.
 }
 
 
 Stock* add(Stock* &arr, int &n)
 {
+    //return a resized array with an added stock
+    
     int i;
     n += 1;
     auto *cop_arr = new Stock [n];
@@ -150,10 +159,10 @@ void hi_lo(Stock* arr, int n)
 void edit(Stock* arr, int n)
 {
     int i;
-    bool flag = true;
-    float val;
+    bool flag = true; //error message control
+    float val; //usr input for price change
 
-    string x;
+    string x;// usr input for stock to be edited
     std::cout << "Please enter the name or symbol of the stock you would like to edit: ";
     std::cin >> x;
     for (i = 0; i < n; i++)
@@ -244,7 +253,7 @@ int main()
 {
     int n = 4;
     int menu_choice;
-    int flag = 1;
+    int flag = 1; //loop control
     auto *arr = new Stock[n];
 
     std::cout << "Enter the number of stocks you would like to initially enter: ";
