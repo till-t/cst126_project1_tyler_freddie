@@ -1,7 +1,5 @@
- 
 #include <iostream>
 #include <string>
-#include <algorithm>
 
 using namespace std;
 
@@ -23,6 +21,7 @@ public:
     }
 };
 
+
 void Stock::get_info()
 {
     std::cout << "Enter the name of the stock: ";
@@ -32,6 +31,7 @@ void Stock::get_info()
     std::cout << "Enter the price of the stock: ";
     std::cin >> price;
 }
+
 
 /*
 void convert_case(Stock* arr, int n)
@@ -47,6 +47,7 @@ void convert_case(Stock* arr, int n)
 }
 */
 
+
 void build_list(Stock* arr, int n)
 {
     int i;
@@ -57,6 +58,7 @@ void build_list(Stock* arr, int n)
         arr[i] = sto;
     }
 }
+
 
 Stock* remove(Stock* &arr, int &n)
 {
@@ -245,42 +247,9 @@ int main()
     int flag = 1;
     auto *arr = new Stock[n];
 
-    // use this block to build stock list from scratch
-    // ==============================================================================
-    //std::cout << "Enter the number of stocks you would like to initially enter: ";
-    //std::cin >> n;
-    //Stock arr[n];
-    //build_list(arr, n);
-    // ===============================================================================
-
-
-    // use this block for ease of testing program.
-    //====================================================================
-    Stock st1;
-    Stock st2;
-    Stock st3;
-    Stock st4;
-    st1.name = "Apple";
-    st1.symbol = "appl";
-    st1.price = 32.59;
-    st2.name = "Microsoft";
-    st2.symbol = "mic";
-    st2.price = 0.29;
-    st3.name = "Mcdonalds";
-    st3.symbol = "mkd";
-    st3.price = 1000;
-    st4.name = "liverpool";
-    st4.symbol = "lvp";
-    st4.price = 56.55;
-    // =================================================================
-
-
-    Stock st_arr[] = {st1, st2, st3, st4}; //comment out this line
-    // when building lists from scratch. Also comment out the following for loop.
-
-
-    for (int i = 0; i < n; i++)
-        arr[i] = st_arr[i];
+    std::cout << "Enter the number of stocks you would like to initially enter: ";
+    std::cin >> n;
+    build_list(arr, n);
 
     while (flag)
     {
@@ -289,7 +258,7 @@ int main()
     }
 
     std::cout << "================================================================" << std::endl;
-    std::cout <<  "Program Closing..." << std::endl;
+    std::cout <<  "PROGRAM CLOSING..." << std::endl;
     std::cout << "================================================================\n\n\n" << std::endl;
     delete[] arr;
     return 0;
