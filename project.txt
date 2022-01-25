@@ -1,0 +1,87 @@
+**
+ PsuedoCode
+ **
+ 1) Made 5 fucntions(add,edit,remove,hi to low, and low to high)
+    this is a template to work on we can change later...
+ 2) Decide who would work on what function or we could work on it together and go step by step so we both understand what is going on in each fucntion
+ 3) Start a build Phase and work on each fucntion adding pieces and making sure they work
+ 4) Make sure we arent leaking memory
+ 5) Test Phase we should test each function seperatly and then run each funcition one after another
+ 6) End
+**
+
+
+ Agile Questions- Freddy
+ **
+ *1/14/2022
+ What SPECIFIC task will you complete in the next half hour?
+ 1)The specific task that I will complete today is start a psuedo code and send to tyler
+ What do you know about this SPECIFIC task?
+ 2)I know how to build a psuedo code
+ What DON'T you know about this SPECIFIC task?
+ 3)I am not entirely sure where to start building the psuedo code
+
+ *1/16/2022
+ What SPECIFIC task will you complete in the next half hour?
+ 1)The specific Task that I want to work on is making sure we have a structure to lay out
+ What do you know about this SPECIFIC task?
+ 2)We know what functions we are going to work with
+ What DON'T you know about this SPECIFIC task?
+ 3)We dont know how each function is going to work yet
+
+ *1/18/2022
+ What SPECIFIC task will you complete in the next half hour?
+ 1)The specific task I will complete today is I am going to work on the add and edit function
+ What do you know about this SPECIFIC task?
+ 2)I know that I am going to have to alter the array the stocks are beign held in
+ What DON'T you know about this SPECIFIC task?
+ 3)I dont know just yet how to alter the array
+
+ *1/21/2022
+ What SPECIFIC task will you complete in the next half hour?
+ 1)The specific task I will complete today is test each function with tyler and go through code making sure we both understand it
+ What do you know about this SPECIFIC task?
+ 2)I Know me and tyler are going to have to test each function
+ What DON'T you know about this SPECIFIC task?
+ 3)I dont know which functions are going to have trouble or not
+**
+
+
+Agile Questions- Tyler
+
+1/14/2022
+1)We set out to build an idea of the different functions that this project would
+require. We did this by writing psuedo code.
+2)We know that this project is going to require arrays, user input, and the use of
+pointers and references.
+3)We don't know exactly how all the pieces are going to fit together at the moment.
+
+1/16/2022
+1)We will determine a display and process menu for control of the program.
+2)We know what the individual functions will need to accomplish.
+3)The specifics of each function are to be determined.
+
+1/18/2022
+1)The specific work I will working on right now is the sorting functions.
+2)I know that I will be sorting an array based on a float value from high to low and from low to high.
+3)I don't know how to copy and return arrays using pointers.
+
+1/21/2022
+1) Today Freddy and I will be testing the program using different methods.
+2) We know that we will be testing edge cases and potential user errors that
+might occur.
+3)We don't know what bugs(if any) will present themselves.
+
+ Meeting Times
+ **
+ *1/12/2022
+ [Me and Tyler met during class and exchanged information]
+ *1/14/2022
+ [Got together and discussed the planning of the code]
+ *1/16/2022
+ [Got together to discusse the structing of the code and which functions would require the most attention]
+ *1/18/2022
+ [Got together after buliding functions and test each of them together]
+ *1/21/2022
+ [Got together after everything was built to test each function one after another and debug any errors]
+
