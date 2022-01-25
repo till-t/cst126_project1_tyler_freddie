@@ -193,7 +193,7 @@ void display_all(Stock* arr, int n)
 int display_menu(int& menu_choice)
 {
     std::cout << "1) Add a new stock to collection.\n";
-    std::cout << "2) Remove a stock from the collectino.\n";
+    std::cout << "2) Remove a stock from the collection.\n";
     std::cout << "3) Edit a stock price.\n";
     std::cout << "4) Sort stocks based on price from high to low.\n";
     std::cout << "5) Sort stocks based on price from low to high.\n";
